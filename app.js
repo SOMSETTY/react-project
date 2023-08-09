@@ -1,37 +1,71 @@
-
-const heading = React.createElement("h1",
-{id : "heading",xyz:"  abc "},
-"hello world from React!"
-);
-/**
- * 
- * <div id = "parent">
- *    <div id ="child"
- *     <h1> iam h1 tag </h1>
- *     <h1> iam h2 tag </h1>
- *     </div>
- * </div>
- *  
- */
-
-const parent = React.createElement("div",{id:"parent"}, [
-  React.createElement("div",{id:"child"},[
-     React.createElement("h1",{},"i am h1 tag"),
-     React.createElement("h2",{},"i am h2 tag"),   
-]), 
-React.createElement("div",{id:"child2"},[
-     React.createElement("h1",{},"i am h1 tag"),
-     React.createElement("h2",{},"i am h2 tag"),   
-]),
-]);
-
-console.log(parent)  //object
+import React from "react";
+import  ReactDOM  from "react-dom/client";
 
 
 
+const Header = () => {
+    return(
+     <div className="header">
+      <div className="logo-container">
+       <img className="logo"src="https://www.logodesign.net/logo/smoking-burger-with-lettuce-3624ld.png" />
+    </div>
+          <div className="nav-items">
+               <ul>
+                    <li>home</li>
+                    <li>About us </li>
+                    <li>contact us</li>
+                    <li>cart</li>
+               </ul>
 
+          </div>
+     </div>
+    ) ;
+};
 
+const RestaurantCard =(props) => {
+     const {resName,cuisine}=props;
+
+     return(
+          <div className="res-card" style={{backgroundColor:"#f0f0f0"}} >
+              <img 
+              className="res-logo"
+              alt ="res-logo"
+              src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/ygzienfet0nhu2k11swa"/>
+               <h3>{resName}</h3>
+               <h4>{cuisine}</h4>
+               <h4>4.4 stars</h4>
+               <h4>45 mintues</h4>
+               
+          </div>
+     );
+};
+const Body =() =>{
+     return (
+          <div className="body">
+            <div className="search">search</div>   
+            <div className="res-container">
+       <RestaurantCard 
+       resName="Sandeep foods"
+        cuisine="Biryani North Indian,Asian "/>
+       <RestaurantCard 
+       resName="KFC" 
+       cuisine="Burger,Fast food"/>
+            </div>  
+            </div>
+          
+     );
+};
+
+const AppLayout = () =>{
+    return (
+     <div className="app">
+     <Header/> 
+     <Body/> 
+     
+
+     </div>
+    );
+};
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-
-root.render(parent);
+root.render(<AppLayout/>)
